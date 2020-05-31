@@ -3,8 +3,9 @@ import {
   CHANGE_STYLES,
   TABLE_RESIZE,
   APPLY_STYLE,
-  CHANGE_TITLE
+  CHANGE_TITLE, UPDATE_DATE,
 } from './types';
+import {dateFilter} from '@/core/utils';
 
 export function rootReducer(state, action) {
   let field
@@ -39,6 +40,8 @@ export function rootReducer(state, action) {
         ...state,
         title: action.data
       }
+    case UPDATE_DATE:
+      return {...state, date: dateFilter(new Date(), 'datetime')}
     default: return state
   }
 }
